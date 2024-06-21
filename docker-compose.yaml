@@ -1,0 +1,17 @@
+services:
+  checkmk:
+    image: skb50bd/rpi-checkmk-raw:latest
+    container_name: checkmk
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - checkmk:/opt/omd/sites
+      - /etc/localtime:/etc/localtime:ro
+    tmpfs:
+      - /opt/omd/sites/checkmk/tmp
+    restart: always
+
+volumes:
+  checkmk:
+    driver: local
